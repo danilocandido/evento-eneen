@@ -1,0 +1,44 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    version="3.0">
+    
+  <!-- Está é a pagina inicial  http://localhost:8080/fortal/ -->
+    <welcome-file-list>
+        <welcome-file>/jsp/index.jsp</welcome-file>
+    </welcome-file-list>
+     
+ 
+    <!-- The Mentawai controller - CONTROLADOR -->
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>org.mentawai.core.Controller</servlet-class>
+        
+        <init-param>
+            <param-name>applicationManager</param-name>
+            <param-value>com.eventos.manager.AppManager</param-value> <!-- Aponta para a applicationManager -->
+        </init-param>
+		 
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+ 
+    <!-- You must choose an extension to indicate a mentawai action -->
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>*.mtw</url-pattern>
+    </servlet-mapping>
+    
+    <servlet> 
+		<servlet-name>TemplateServlet</servlet-name> 
+		<servlet-class>org.mentawai.template.JspTemplateServlet</servlet-class> 
+		 <init-param> 
+			<param-name>TemplateManager</param-name> 
+			<param-value>TemplateManager</param-value> 
+		</init-param>
+	</servlet> 
+	<servlet-mapping> 
+		<servlet-name>TemplateServlet</servlet-name> 
+		<url-pattern>*.page</url-pattern> 
+	</servlet-mapping> 
+    
+</web-app>
